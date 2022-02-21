@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Thunfisch Sync</title>
+		<meta charset="utf-8">
+		<meta name="robots" content="noindex">
+		<meta name="theme-color" content="#202020">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://sync.thunfisch.lol/">
+		<meta property="og:title" content="#<%= roomId %>">
+		<meta property="og:site_name" content="Thunfisch Sync">
+		<meta property="og:description" content="Schau dir Youtube Videos mit deinen Freunden an. 🐟">
+		<meta property="og:image" content="https://sync.thunfisch.lol/img/icons/icon256.png">
+		<script src="https://kit.fontawesome.com/87da4c9bfd.js" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap" rel="stylesheet">
+		<link rel="manifest" href="/manifest.json">
+		<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+		<link rel="stylesheet" href="/css/room.css">
+		<link rel="stylesheet" href="/css/mobile.css">
+	</head>
+	<body>
+		<header>
+			<input type="hidden" id="roomId" value="<%= roomId %>">
+			<div id="logoText">THUNFISCH SYNC</div>
+			<div id="topControls">
+				<div id="lyricsButton">
+					<i class="fas fa-quote-left"></i>
+				</div>
+				<div id="loopButton">
+					<i class="fas fa-redo"></i>
+				</div>
+				<div id="viewerCount">0</div>
+			</div>
+		</header>
+		<main>
+			<div id="video">
+				<div id="unmute">
+					<i class="fas fa-volume-mute"></i>
+					<p>Zum Aufheben der Stummschaltung klicken</p>
+				</div>
+				<div id="lyrics">
+					<div id="lyricsBar">
+						<div id="lyricsTitle">Keine Lyrics gefunden.</div>
+						<div id="lyricsHide"><i class="fas fa-times"></i></div>
+					</div>
+					<div id="lyricsText"></div>
+				</div>
+				<div id="player"></div>
+			</div>
+			<div id="search">
+				<input id="searchField" placeholder="YouTube Suche" type="search" autocomplete="off"></input>
+				<button id="searchButton">
+					<i class="fas fa-search"></i>
+				</button>
+				<div id="searchList"></div>
+			</div>
+			<div id="queueList"></div>
+			<div id="tagList"></div>
+		</main>
+		<footer>
+			<img id="logoImage" src="img/tuna.png">
+			<ul id="contact">
+				<li><a href="/"><b>THUNFISCH SYNC</b></a></li>
+				<li><a href="mailto:mail@thunfisch.lol">mail@thunfisch.lol</a></li>
+				<li></br></li>
+				<li><small>Copyright &copy; 2021 thunfisch.lol</small></li>
+			</ul>
+		</footer>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="/js/room.min.js"></script>
+		<script src="https://www.youtube.com/iframe_api"></script>
+	</body>
+</html>

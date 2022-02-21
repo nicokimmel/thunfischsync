@@ -1,0 +1,77 @@
+@media only screen and (max-width: 900px) {
+	header #logoText {
+		margin-left: 10px;
+		font-size: 1.4em;
+	}
+	
+	header #topControls {
+		margin-right: 10px;
+	}
+	
+	main {
+		margin-top: 20px;
+		padding: 0;
+		display: grid;
+		grid-template-columns: 100%;
+		grid-row-gap: 20px;
+	}
+	
+	main #video {
+		grid-row: 1;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 16/9;
+	}
+	
+	main #video #lyrics {
+		width: 80%;
+		height: 500px;
+		top: 25px;
+	}
+	
+	main #search {
+		grid-row: 2;
+		width: 100%;
+		max-width: 100%;
+		height: 500px;
+		max-height: 800px;
+	}
+	
+	main #queueList {
+		grid-row: 3;
+		width: 100%;
+		justify-content: center;
+	}
+	
+	main #queueList .queueItem {
+		width: calc(50% - 25px);
+		max-width: 200px;
+		grid-template-columns: 25% 25% 25% 25%;
+		grid-template-rows: 20% 20% 20% 20% 20%;
+	}
+	
+	main #queueList .queueItem i {
+		width: 100%;
+		height: 100%;
+		padding-top: 10%;
+		margin: 0;
+		box-sizing: border-box;
+	}
+	
+	main #tagList {
+		grid-row: 4;
+		width: 100%;
+		padding: 0 5px 0 5px;
+		margin-bottom: 35px;
+		box-sizing: border-box;
+	}
+	
+	footer {
+		padding: 20px;	
+	}
+	
+	footer #logoImage {
+		width: 150px;
+		height: auto;
+	}
+}

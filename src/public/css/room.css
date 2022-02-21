@@ -1,0 +1,497 @@
+:root {
+	--colorText: #FFFFFF;
+	--colorDarkText: #DBDBDB;
+	--colorElement: #202020;
+	--colorBackground: #181818;
+	--colorBlue: #2196F3;
+	--colorLightGray: #777777;
+	--colorGray: #292929;
+	--colorBlack: #0A0A0A;
+	
+	--scrollbarWidth: thin;
+	--scrollbarColor: #2196F3;
+	--scrollbarBgColor: #202020;
+}
+
+a:link, a:visited, a:hover, a:active {
+	color: var(--colorText);
+	text-decoration: none;
+}
+
+body, div {
+	scrollbar-width: var(--scrollbarWidth);
+	scrollbar-color: var(--scrollbarColor) var(--scrollbarBgColor);
+}
+
+*:focus {
+	outline: 0;
+}
+
+body::-webkit-scrollbar,
+div::-webkit-scrollbar {
+	width: 10px;
+}
+
+body::-webkit-scrollbar-track,
+div::-webkit-scrollbar-track {
+	background-color: var(--scrollbarBgColor);
+}
+
+body::-webkit-scrollbar-thumb,
+div::-webkit-scrollbar-thumb {
+	background-color: var(--scrollbarColor);
+	border: 3px solid var(--scrollbarBgColor);
+	border-radius: 6px;
+}
+
+input, button {
+	font-family: "Ubuntu", sans-serif;
+	color: var(--colorText);
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: "Ubuntu", sans-serif;
+	color: var(--colorText);
+	background-color: var(--colorBackground);
+	overflow-x: hidden;
+	user-select: none;
+}
+
+header {
+	width: 100%;
+	height: 60px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-family: "Open Sans", sans-serif;
+	background-color: var(--colorElement);
+}
+
+header #logoText {
+	margin-left: 25px;
+	font-size: 2em;
+	color: var(--colorBlue);
+}
+
+header #topControls {
+	margin-right: 25px;
+	display: flex;
+}
+
+header #topControls div {
+	min-width: 40px;
+	height: 40px;
+	line-height: 40px;
+	margin-left: 10px;
+	text-align: center;
+	vertical-align: middle;
+	background-color: var(--colorGray);
+	border-radius: 25px;
+	cursor: pointer;
+}
+
+header #topControls div:hover {
+	background-color: var(--colorBlue);
+}
+
+header #topControls #viewerCount {
+	font-size: 1.5em;
+	cursor: default;
+}
+
+main {
+	padding: 25px;
+	display: grid;
+	grid-template-columns: calc(80% - 20px) 20%;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+}
+
+main #video {
+	width: auto;
+	max-width: 100%;
+	height: 85vh;
+	aspect-ratio: 16/9;
+	margin: 0 auto;
+	display: grid;
+	justify-items: center;
+	align-items: center;
+	border: 1px solid var(--colorBlue);
+	box-sizing: border-box;
+	position: relative;
+}
+
+main #video #unmute {
+	grid-column-start: 1;
+	grid-row-start: 1;
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: rgba(28, 28, 28, 0.7);
+}
+
+main #video #unmute i {
+	margin-bottom: -10px;
+	font-size: 3em;
+}
+
+main #video #lyrics {
+	z-index: 3;
+	width: 400px;
+	height: 600px;
+	position: absolute !important;
+	background-color: rgba(28, 28, 28, 0.95);
+	box-sizing: border-box;
+}
+
+main #video #lyrics #lyricsBar {
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	display: flex;
+	justify-content: space-between;
+	background-color: var(--colorBlue);
+	cursor: grab;
+}
+
+main #video #lyrics #lyricsBar #lyricsTitle {
+	margin-left: 10px;
+	overflow: hidden;
+}
+
+main #video #lyrics #lyricsBar #lyricsHide {
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+main #video #lyrics #lyricsBar #lyricsHide:hover {
+	color: var(--colorDarkText);
+}
+
+main #video #lyrics #lyricsText {
+	width: 100%;
+	height: calc(100% - 35px);
+	padding: 15px;
+	overflow-y: scroll;
+	box-sizing: border-box;
+}
+
+main #video #player {
+	grid-column-start: 1;
+	grid-row-start: 1;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+}
+
+main #search {
+	width: 100%;
+	max-width: 400px;
+	height: 85vh;
+	display: grid;
+	grid-template-columns: 80% 20%;
+	grid-template-rows: 40px calc(100% - 40px);
+	background-color: var(--colorElement);
+}
+
+main #search #searchField {
+	grid-column: 1;
+	grid-row: 1;
+	padding: 10px;
+	font-size: 1em;
+	color: var(--colorDarkText);
+	background-color: var(--colorBlack);
+	border: 1px solid var(--colorGray);
+}
+
+main #search #searchButton {
+	grid-column: 2;
+	grid-row: 1;
+	padding: 10px;
+	text-align: center;
+	vertical-align: middle;
+	background-color: var(--colorBlue);
+	border: 1px solid var(--colorGray);
+	cursor: pointer;
+}
+
+main #search #searchList {
+	grid-column: 1 / span 2;
+	grid-row: 2 / span 8;
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+}
+
+main #search #searchList #searchLabel {
+	padding-top: 25px;
+	text-align: center;
+}
+
+main #search #searchList #searchAddAllButton {
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	background-color: var(--colorBlack);
+	border: 1px solid var(--colorGray);
+	box-sizing: border-box;
+	cursor: pointer;
+}
+
+main #search #searchList #searchAddAllButton:hover {
+	background-color: var(--colorBlue);
+}
+
+main #search #searchList .searchItem {
+	height: 100px;
+	max-height: 100px;
+	display: grid;
+	grid-template-columns: 30% calc(70% - 45px) 45px;
+	font-size: 0.9em;
+	background-color: var(--colorBlack);
+	border: 1px solid var(--colorGray);
+	overflow: hidden;
+}
+
+main #search #searchList .searchItem .searchItemThumbnail {
+	grid-column: 1;
+	grid-row: 1 / span 2;
+	width: 100%;
+	height: 100%;
+	border: 1px solid var(--colorGray);
+	object-fit: cover;
+	display: block;
+}
+
+main #search #searchList .searchItem .searchItemDuration {
+	grid-column: 1;
+	grid-row: 2;
+	width: 100%;
+	height: 25px;
+	margin: 0 auto;
+	margin-top: 10px;
+	display: block;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+main #search #searchList .searchItem .searchItemDescription {
+	grid-column: 2;
+	grid-row: 1 / span 2;
+	max-height: 100px;
+	padding: 8px;
+	word-break: break-word;
+}
+
+main #search #searchList .searchItem .searchItemDescription .searchItemChannel {
+	color: var(--colorDarkText);
+	word-break: break-word;
+}
+
+main #search #searchList .searchItem .searchItemPlay {
+	grid-column: 3;
+	grid-row: 1;
+	margin-top: 8px;
+}
+
+main #search #searchList .searchItem .searchItemQueue {
+	grid-column: 3;
+	grid-row: 2;
+	margin-top: 2px;
+}
+
+main #search #searchList .searchItem i {
+	width: 35px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	border: 1px solid var(--colorLightGray);
+	cursor: pointer;
+}
+
+main #search #searchList .searchItem i:hover {
+	background-color: var(--colorLightGray);
+	color: var(--colorText);
+}
+
+main #queueList {
+	width: 95%;
+	height: auto;
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 auto;
+}
+
+main #queueList .queueItem {
+	width: 200px;
+	height: auto;
+	min-height: 200px;
+	margin: 10px;
+	display: grid;
+	grid-template-columns: 25% 25% 25% 25%;
+	grid-template-rows: 20% 20% 20% 20% 20%;
+	font-size: 0.9em;
+	background-color: var(--colorElement);
+	border: 1px solid var(--colorGray);
+}
+
+main #queueList .queueItem:hover {
+	background-color: var(--colorBlack);
+}
+
+main #queueList .queueItem .queueItemThumbnail {
+	grid-column: 1 / span 4;
+	grid-row: 1 / span 2;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	cursor: grab;
+}
+
+main #queueList .queueItem .queueItemDuration {
+	grid-column: 2 / span 2;
+	grid-row: 2;
+	width: 100%;
+	height: 25px;
+	line-height: 25px;
+	margin-top: 10px;
+	text-align: center;
+	vertical-align: middle;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+main #queueList .queueItem .queueItemDescription {
+	grid-column: 1 / span 4;
+	grid-row: 3 / span 2;
+	padding: 10px;
+	word-break: break-word;
+}
+
+main #queueList .queueItem .queueItemDescription .queueItemChannel {
+	color: var(--colorDarkText);
+	word-break: break-word;
+}
+
+main #queueList .queueItem .queueItemPlay {
+	grid-column: 1;
+	grid-row: 5;
+	cursor: pointer;
+}
+
+main #queueList .queueItem .queueItemUp {
+	grid-column: 2;
+	grid-row: 5;
+	cursor: pointer;
+}
+
+main #queueList .queueItem .queueItemDown {
+	grid-column: 3;
+	grid-row: 5;
+	cursor: pointer;
+}
+
+main #queueList .queueItem .queueItemDelete {
+	grid-column: 4;
+	grid-row: 5;
+	cursor: pointer;
+}
+
+main #queueList .queueItem i {
+	width: 35px;
+	height: 35px;
+	line-height: 35px;
+	margin: 0 auto;
+	text-align: center;
+	background-color: var(--colorElement);
+	border: 1px solid var(--colorLightGray);
+	cursor: pointer;
+}
+
+main #queueList .queueItem i:hover {
+	background-color: var(--colorLightGray);
+	color: var(--colorText);
+}
+
+main #queueList .queueSeparator {
+	width: 25px;
+	height: auto;
+}
+
+main #queueList .queueItemDraggable {
+	outline: 2px solid var(--colorBlue);
+}
+
+main #queueList .queueItemDroppableOver {
+	outline: 2px dashed var(--colorBlue);
+}
+
+main #queueList .queueItemDroppableHighlight {
+	outline: 2px dashed var(--colorDarkText);
+}
+
+main #tagList {
+	width: 100%;
+	height: auto;
+	margin-top: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: flex-start;
+	align-items: flex-start;
+}
+
+main #tagList .tagItem {
+	min-width: 55px;
+	margin: 0 5px 5px 0;
+	padding: 5px 10px 5px 10px;
+	font-size: 0.9em;
+	text-align: center;
+	background-color: var(--colorBlue);
+	border-radius: 15px;
+	overflow-wrap: break-word;
+}
+
+footer {
+	width: 100%;
+	height: 140px;
+	padding: 20px 40px 20px 40px;
+	display: flex;
+	align-items: center;
+	font-family: "Open Sans", sans-serif;
+	font-size: 0.9em;
+	background-color: var(--colorElement);
+	box-sizing: border-box;
+}
+
+footer #logoImage {
+	width: auto;
+	height: 80px;
+	display: block;
+}
+
+footer #contact {
+	display: block;
+	list-style-type: none;
+}
+
+.ui-resizable { position: relative;}
+.ui-resizable-handle { position: absolute;font-size: 0.1px; display: block; }
+.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
+.ui-resizable-n { cursor: n-resize; height: 7px; width: 100%; top: -5px; left: 0; }
+.ui-resizable-s { cursor: s-resize; height: 7px; width: 100%; bottom: -5px; left: 0; }
+.ui-resizable-e { cursor: e-resize; width: 7px; right: -5px; top: 0; height: 100%; }
+.ui-resizable-w { cursor: w-resize; width: 7px; left: -5px; top: 0; height: 100%; }
+.ui-resizable-se { cursor: se-resize; width: 12px; height: 12px; right: 1px; bottom: 1px; }
+.ui-resizable-sw { cursor: sw-resize; width: 9px; height: 9px; left: -5px; bottom: -5px; }
+.ui-resizable-nw { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }
+.ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}
