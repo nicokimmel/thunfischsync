@@ -300,10 +300,10 @@ setInterval(function() {
 			if(room.idle >= 300) {
 				if(!room.sticky) {
 					roomList.remove(room.id)
-					logger.log(`Deleted room #${room.id} due to inactivity.`)
+					//logger.log(`Deleted room #${room.id} due to inactivity.`)
 				} else {
 					room.playing = false
-					logger.log(`Paused video in room #${room.id} due to inactivity.`)
+					//logger.log(`Paused video in room #${room.id} due to inactivity.`)
 				}
 			} else {
 				room.idle = room.idle + 1
