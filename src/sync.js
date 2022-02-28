@@ -37,9 +37,11 @@ app.get("/", function(req, res) {
 })
 
 app.get("/:roomId", function(req, res) {
-	var roomId = req.params.roomId.toUpperCase()
+	var roomId = req.params.roomId
 	if(roomList.exists(roomId)) {
 		res.render(__dirname + "/public/room.ejs", {roomId: roomId})
+	} else if(roomList.exists(roomId.toUpperCase())) {
+		res.redirect(`/${roomId.toUpperCase()}`)
 	} else {
 		res.redirect("/")
 	}
@@ -49,6 +51,8 @@ app.get("/:roomId/tv", function(req, res) {
 	var roomId = req.params.roomId.toUpperCase()
 	if(roomList.exists(roomId)) {
 		res.render(__dirname + "/public/tv.ejs", {roomId: roomId})
+	} else if(roomList.exists(roomId.toUpperCase())) {
+		res.redirect(`/${roomId.toUpperCase()}/tv`)
 	} else {
 		res.redirect("/")
 	}
@@ -56,13 +60,16 @@ app.get("/:roomId/tv", function(req, res) {
 
 app.get("/:roomId/api", function(req, res) {
 	var ip = req.headers["x-real-ip"] || req.socket.remoteAddress
-	var roomId = req.params.roomId.toUpperCase()
-	logger.log(`Requested information of room #${room.id}.`, ip)
+	var roomId = req.params.roomId
 	if(roomList.exists(roomId)) {
 		var roomInfo = roomList.get(roomId).info()
 		res.status(200).json(roomInfo)
+		logger.log(`Requested information of room #${roomId}.`, ip)
+	} else if(roomList.exists(roomId.toUpperCase())) {
+		res.redirect(`/${roomId.toUpperCase()}/api`)
 	} else {
 		res.status(404).send("This room does not exist!")
+		logger.log(`Requested information of unknown room #${roomId}.`, ip)
 	}
 })
 
