@@ -2,11 +2,9 @@ const roomId = $("#roomId").val()
 const socket = io.connect("localhost:3000")
 
 var sessionId = null
-var isLivestream = false
 
 socket.on("join", function(room) {
 	sessionId = socket.id
-	isLivestream = (room.video.duration > 0) ? false : true
 	
 	player.loadVideoById(room.video.id, room.time)
 	
@@ -65,10 +63,10 @@ socket.on("video", function(room) {
 	window.setTimeout(() => {
 		room.playing ? player.playVideo() : player.pauseVideo()
 	}, 500)
-	isLivestream = (room.video.duration > 0) ? false : true
 	tagList = room.video.tags
 	buildTagList()
 	setupControls(room.playing, room.video.duration)
+	updateTime(room.video.duration)
 })
 
 socket.on("loop", function(enabled) {

@@ -109,11 +109,14 @@ $("#playPause").click(function(event) {
 
 //  TIME  //
 function updateTime(time) {
-	var text = time
-	if(typeof time == "number") {
-		var text = new Date(parseInt(time) * 1000).toISOString().substring(11, 19)
+	var timestamp = ""
+	if(time < 0) {
+		timestamp = "Live"
+		updateProgress(time)
+	} else {
+		timestamp = time < 0 ? "Live" : new Date(parseInt(time) * 1000).toISOString().substring(11, 19)
 	}
-	$("#time").html(text)
+	$("#time").html(timestamp)
 }
 
 //  PROGRESS  //
