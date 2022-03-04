@@ -12,7 +12,7 @@
 		<meta property="og:site_name" content="Thunfisch Sync">
 		<meta property="og:description" content="Schau dir Youtube Videos mit deinen Freunden an. 🐟">
 		<meta property="og:image" content="https://sync.thunfisch.lol/img/icons/icon256.png">
-		<script src="https://kit.fontawesome.com/87da4c9bfd.js" crossorigin="anonymous"></script>
+		<script src="https://kit.fontawesome.com/e45c34404f.js" crossorigin="anonymous"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
@@ -28,10 +28,10 @@
 			<div id="logoText">THUNFISCH SYNC</div>
 			<div id="topControls">
 				<div id="lyricsButton">
-					<i class="fas fa-quote-left"></i>
+					<i class="fa-solid fa-quote-left"></i>
 				</div>
 				<div id="loopButton">
-					<i class="fas fa-redo"></i>
+					<i class="fa-solid fa-repeat"></i>
 				</div>
 				<div id="viewerCount">0</div>
 			</div>
@@ -39,22 +39,31 @@
 		<main>
 			<div id="video">
 				<div id="unmute">
-					<i class="fas fa-volume-mute"></i>
+					<i class="fa-solid fa-volume-xmark"></i>
 					<p>Zum Aufheben der Stummschaltung klicken</p>
 				</div>
 				<div id="lyrics">
 					<div id="lyricsBar">
 						<div id="lyricsTitle">Keine Lyrics gefunden.</div>
-						<div id="lyricsHide"><i class="fas fa-times"></i></div>
+						<div id="lyricsHide"><i class="fa-solid fa-xmark"></i></div>
 					</div>
 					<div id="lyricsText"></div>
 				</div>
 				<div id="player"></div>
+				<div id="controls">
+					<button id="playPause"><i class="fa-solid fa-play"></i></button>
+					<span id="time">14:36</span>
+					<input id="progress" type="range" min="0" max="100" step="1" value="0"></input>
+					<button id="mute"><i class="fa-solid fa-volume-xmark"></i></button>
+					<input id="volume" type="range" min="0" max="100" step="1" value="0"></input>
+					<button id="options"><i class="fa-solid fa-gear"></i></button>
+					<button id="fullscreen"><i class="fa-solid fa-expand"></i></button>
+				</div>
 			</div>
 			<div id="search">
 				<input id="searchField" placeholder="YouTube Suche" type="search" autocomplete="off"></input>
 				<button id="searchButton">
-					<i class="fas fa-search"></i>
+					<i class="fa-solid fa-magnifying-glass"></i>
 				</button>
 				<div id="searchList"></div>
 			</div>

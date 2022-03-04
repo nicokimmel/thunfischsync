@@ -31,10 +31,10 @@ function buildQueueList() {
 						<div class="queueItemTitle">${title}</div>
 						<div class="queueItemChannel">${channelName}</div>
 					</div>
-					<i class="queueItemPlay fas fa-play" aria-hidden="true"></i>
-					<i class="queueItemUp fas fa-arrow-up" aria-hidden="true"></i>
-					<i class="queueItemDown fas fa-arrow-down" aria-hidden="true"></i>
-					<i class="queueItemDelete fas fa-trash" aria-hidden="true"></i>
+					<i class="queueItemPlay fa-solid fa-play" aria-hidden="true"></i>
+					<i class="queueItemUp fa-solid fa-caret-up" aria-hidden="true"></i>
+					<i class="queueItemDown fa-solid fa-caret-down" aria-hidden="true"></i>
+					<i class="queueItemDelete fa-solid fa-trash" aria-hidden="true"></i>
 				</div>`
 	}
 	$("#queueList").html(html)

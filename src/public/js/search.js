@@ -66,8 +66,8 @@ function buildSearchList() {
 						<div class="searchItemTitle">${title}</div>
 						<div class="searchItemChannel">${channelName}</div>
 					</div>
-					<i class="searchItemPlay fas fa-play" aria-hidden="true"></i>
-					<i class="searchItemQueue fas fa-plus" aria-hidden="true"></i>
+					<i class="searchItemPlay fa-solid fa-play" aria-hidden="true"></i>
+					<i class="searchItemQueue fa-solid fa-plus" aria-hidden="true"></i>
 				</div>`
 	}
 	$("#searchList").html(html)

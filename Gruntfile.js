@@ -36,6 +36,7 @@ module.exports = function(grunt) {
 						"src/public/js/commands.js"
 					],
 					"dist/public/js/tv.min.js": [
+						"src/public/js/app.js",
 						"src/public/js/connection.js",
 						"src/public/js/player.js"
 					],

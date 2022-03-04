@@ -6,9 +6,6 @@ if(navigator.standalone || window.matchMedia("(display-mode: standalone)").match
 var storageAvailable = false
 if(typeof(Storage) !== "undefined") {
 	storageAvailable = true
-	if(!window.localStorage.lastRooms) {
-		window.localStorage.lastRooms = JSON.stringify([])
-	}
 }
 
 if("serviceWorker" in navigator) {
@@ -17,10 +14,26 @@ if("serviceWorker" in navigator) {
 
 function cacheRoom(roomId) {
 	if(storageAvailable) {
-		var roomList = JSON.parse(window.localStorage.lastRooms)
+		if(!window.localStorage.rooms) {
+			window.localStorage.rooms = JSON.stringify([])
+		}
+		var roomList = JSON.parse(window.localStorage.rooms)
 		if(!roomList.includes(roomId)) {
 			roomList.push(roomId)
-			window.localStorage.lastRooms = JSON.stringify(roomList)
+			window.localStorage.rooms = JSON.stringify(roomList)
 		}
 	}
+}
+
+function cacheVolume(volume) {
+	if(storageAvailable) {
+		window.localStorage.volume = volume
+	}
+}
+
+function getCachedVolume() {
+	if(storageAvailable && window.localStorage.volume) {
+		return window.localStorage.volume
+	}
+	return 50
 }

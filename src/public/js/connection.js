@@ -9,11 +9,14 @@ socket.on("join", function(room) {
 	isLivestream = (room.video.duration > 0) ? false : true
 	
 	player.loadVideoById(room.video.id, room.time)
-	player.playVideo()
+	
 	window.setTimeout(() => {
 		room.playing ? player.playVideo() : player.pauseVideo()
 	}, 500)
+	
 	player.setPlaybackRate(parseFloat(room.speed))
+	
+	setupControls(room.playing, room.video.duration)
 	
 	cacheRoom(room.id)
 	loadQueue(room.queue)
@@ -25,56 +28,43 @@ socket.on("join", function(room) {
 })
 
 socket.on("tick", function(playing, time, speed) {
-	if(checkingEvents) {
-		return
-	}
+	playing ? player.playVideo() : player.pauseVideo()
 	
-	var timegap = Math.abs(player.getCurrentTime() - time)
+	if(seeking) { return }
+	
+	var timegap = Math.abs(player.currentTime - time)
 	if(timegap > parseFloat(speed) + 1) {
 		player.seekTo(time)
 	}
 	
-	if(playing && player.getPlayerState() === YT.PlayerState.PAUSED) {
-		player.playVideo()
-	} else if(!playing && player.getPlayerState() === YT.PlayerState.PLAYING) {
-		player.pauseVideo()
-	}
+	updateProgress(time)
+	updateTime(time)
 })
 
-var ignoreFlag = true
-socket.on("play", function(clientId) {
-	if(clientId !== sessionId) {
-		ignoreFlag = true
-		player.playVideo()
-	}
+socket.on("play", function() {
+	player.playVideo()
+	$("#playPause").html(`<i class="fa-solid fa-pause"></i>`)
 })
 
-socket.on("pause", function(clientId) {
-	if(clientId !== sessionId) {
-		ignoreFlag = true
-		player.pauseVideo()
-	}
+socket.on("pause", function() {
+	player.pauseVideo()
+	$("#playPause").html(`<i class="fa-solid fa-play"></i>`)
 })
 
-socket.on("seek", function(clientId, time) {
-	if(clientId !== sessionId) {
-		player.seekTo(time)
-	}
+socket.on("seek", function(time) {
+	if(seeking) { return }
+	player.seekTo(time)
 })
 
-socket.on("speed", function(clientId, speed) {
-	if(clientId !== sessionId) {
-		if(isLivestream) {
-			player.setPlaybackRate(1)
-			return
-		}
-		player.setPlaybackRate(parseFloat(speed))
-	}
+socket.on("speed", function(speed) {
+	
 })
 
 socket.on("video", function(room) {
-	player.loadVideoById(room.video.id, 0)
-	room.playing ? player.playVideo() : player.pauseVideo()
+	player.loadVideoById(room.video.id, 0, "default")
+	window.setTimeout(() => {
+		room.playing ? player.playVideo() : player.pauseVideo()
+	}, 500)
 	isLivestream = (room.video.duration > 0) ? false : true
 	tagList = room.video.tags
 	buildTagList()

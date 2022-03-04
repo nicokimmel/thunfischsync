@@ -97,38 +97,34 @@ io.on("connection", function(client) {
 		logger.log(`Left room #${room.id}`, ip)
 	})
 	
-	client.on("play", function(clientId) {
+	client.on("play", function() {
 		if(!room) { return }
-		if(typeof clientId !== "string") { return }
 		room.playing = true
-		io.in(room.id).emit("play", clientId)
+		io.in(room.id).emit("play")
 		logger.log(`Unpaused video in room #${room.id}`, ip)
 	})
 		
-	client.on("pause", function(clientId) {
+	client.on("pause", function() {
 		if(!room) { return }
-		if(typeof clientId !== "string") { return }
 		room.playing = false
-		io.in(room.id).emit("pause", clientId)
+		io.in(room.id).emit("pause")
 		logger.log(`Paused video in room #${room.id}`, ip)
 	})
 	
-	client.on("seek", function(clientId, time) {
+	client.on("seek", function(time) {
 		if(!room) { return }
-		if(typeof clientId !== "string") { return }
 		if(typeof time !== "number") { return }
 		time = Math.floor(time)
 		room.time = time
-		io.in(room.id).emit("seek", clientId, time)
+		io.in(room.id).emit("seek", time)
 		logger.log(`Seeked video in room #${room.id} to ${time}`, ip)
 	})
 	
-	client.on("speed", function(clientId, speed) {
+	client.on("speed", function(speed) {
 		if(!room) { return }
-		if(typeof clientId !== "string") { return }
 		if(typeof speed !== "number") { return }
 		room.speed = speed
-		io.in(room.id).emit("speed", clientId, speed)
+		io.in(room.id).emit("speed", speed)
 		logger.log(`Changed speed in room #${room.id} to ${speed}`, ip)
 	})
 	
