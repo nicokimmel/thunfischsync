@@ -28,12 +28,12 @@ module.exports = function(grunt) {
 						"src/public/js/utils.js",
 						"src/public/js/app.js",
 						"src/public/js/connection.js",
-						"src/public/js/player.js",
 						"src/public/js/search.js",
 						"src/public/js/queue.js",
 						"src/public/js/tags.js",
 						"src/public/js/lyrics.js",
-						"src/public/js/commands.js"
+						"src/public/js/commands.js",
+						"src/public/js/player.js"
 					],
 					"dist/public/js/tv.min.js": [
 						"src/public/js/app.js",
