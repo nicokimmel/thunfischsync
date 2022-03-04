@@ -68,6 +68,7 @@ socket.on("video", function(room) {
 	isLivestream = (room.video.duration > 0) ? false : true
 	tagList = room.video.tags
 	buildTagList()
+	setupControls(room.playing, room.video.duration)
 })
 
 socket.on("loop", function(enabled) {
