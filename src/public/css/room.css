@@ -73,7 +73,6 @@ input[type="range"]::-webkit-slider-thumb {
 	background-color: var(--sliderThumb);
 	height: 15px;
 	width: 15px;
-	color: red;
 }
 
 input[type="range"]::-moz-range-thumb {
@@ -82,7 +81,6 @@ input[type="range"]::-moz-range-thumb {
 	background-color: var(--sliderThumb);
 	height: 15px;
 	width: 15px;
-	color: red;
 }
 
 html, body {
@@ -416,8 +414,7 @@ main #queueList {
 
 main #queueList .queueItem {
 	width: 200px;
-	height: auto;
-	min-height: 200px;
+	height: 250px;
 	margin: 10px;
 	display: grid;
 	grid-template-columns: 25% 25% 25% 25%;
@@ -458,6 +455,7 @@ main #queueList .queueItem .queueItemDescription {
 	grid-row: 3 / span 2;
 	padding: 10px;
 	word-break: break-word;
+	overflow: hidden;
 }
 
 main #queueList .queueItem .queueItemDescription .queueItemChannel {
