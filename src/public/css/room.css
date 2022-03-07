@@ -361,6 +361,7 @@ main #search #searchList .searchItem .searchItemDuration {
 	margin: 0 auto;
 	margin-top: 10px;
 	display: block;
+	font-size: 1.3em;
 	text-align: center;
 	background-color: rgba(0, 0, 0, 0.7);
 }
