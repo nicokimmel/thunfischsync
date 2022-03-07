@@ -50,7 +50,12 @@ const Room = class {
 	move(from, to) {
 		var temp = this.queue[from]
 		this.queue.splice(from, 1)
-		this.queue.splice(to, 0, temp)
+		if(to < 0) {
+			this.queue.unshift(temp)
+		} else {
+			this.queue.splice(to, 0, temp)
+		}
+		
 	}
 	
 	shuffle() {
