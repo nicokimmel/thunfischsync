@@ -3,13 +3,18 @@ if(navigator.standalone || window.matchMedia("(display-mode: standalone)").match
 	displayMode = "standalone"
 }
 
+if("serviceWorker" in navigator) {
+	navigator.serviceWorker.register("/service-worker.js")
+}
+
 var storageAvailable = false
-if(typeof(Storage) !== "undefined") {
+if("localStorage" in window) {
 	storageAvailable = true
 }
 
-if("serviceWorker" in navigator) {
-	navigator.serviceWorker.register("/service-worker.js")
+var lock = null
+if("wakeLock" in navigator) {
+	lock = navigator.wakeLock.request("screen")
 }
 
 function cacheRoom(roomId) {
