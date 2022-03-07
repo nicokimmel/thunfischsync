@@ -254,7 +254,8 @@ main #roomWrapper #lastRooms #lastRoomsList li {
 	padding: 10px 5px 10px 20px;
 	display: flex;
 	border-radius: 25px;
-	background-color: #FFFFFF;
+	background-color: var(--colorText);
+	color: var(--colorBlack);
 }
 
 main #roomWrapper #lastRooms #lastRoomsList li:hover {
@@ -265,7 +266,7 @@ main #roomWrapper #lastRooms #lastRoomsList li a {
 	width: calc(85% - 5px);
 	line-height: 35px;
 	display: inline-block;
-	color: #000000;
+	color: var(--colorBlack);
 }
 
 main #roomWrapper #lastRooms #lastRoomsList li .removeRoom {
@@ -274,8 +275,7 @@ main #roomWrapper #lastRooms #lastRoomsList li .removeRoom {
 	line-height: 35px;
 	display: inline-block;
 	text-align: center;
-	color: #555555;
-	border-left: 1px solid #000000;
+	border-left: 1px solid var(--colorBlack);
 	cursor: pointer;
 }
 

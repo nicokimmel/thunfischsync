@@ -49,7 +49,7 @@ socket.on("room-discover", function(roomList) {
 	var html = ""
 	for(var i = roomList.length - 1; i >= 0; i--) {
 		var roomId = roomList[i]
-		html += `<li><a href="/${roomId}">#${roomId}</a><i class="fa-solid fa-xmark"></i></li>`
+		html += `<li><a href="/${roomId}">#${roomId}</a><i class="removeRoom fa-solid fa-xmark"></i></li>`
 	}
 	$("#lastRoomsList").html(html)
 	$(".removeRoom").click(function(event) {
