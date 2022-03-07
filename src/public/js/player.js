@@ -21,24 +21,30 @@ function onYouTubeIframeAPIReady() {
 
 function onPlayerReady(event) {
 	playerReady = true
+	
+	player.unloadModule("captions")
+	player.unloadModule("cc")
+	
 	player.mute()
 	socket.emit("join", roomId)
 }
 
-function setupControls(playing, duration) {
+function setupOverlay(room) {
 	$("#progress").attr({
-		"max" : duration,
+		"max" : room.video.duration,
 		"min" : 0
 	})
-	$("#playPause").html(`<i class="fa-solid fa-${playing ? "pause" : "play"}"></i>`)
+	$("#playPause").html(`<i class="fa-solid fa-${room.playing ? "pause" : "play"}"></i>`)
+	$("#title").html(`<a href="https://www.youtube.com/watch?v=${room.video.id}"><i class="fa-solid fa-link"></i> ${room.video.title}</a>`)
+	updateTime(room.video.duration)
 }
 
-//  CONTROLS  //
-$("#controls").hide()
+//  OVERLAY  //
+$("#overlay").hide()
 $("#video").hover(function() {
-	$("#controls").fadeIn(250)
+	$("#overlay").fadeIn(250)
 }, function() {
-	$("#controls").fadeOut(250)
+	$("#overlay").fadeOut(250)
 })
 
 var autoHide = null
@@ -46,26 +52,26 @@ $("#video").on("touchstart", function() {
 	if(autoHide && $(this).is(":visible")) {
 		window.clearTimeout(autoHide)
 		autoHide = null
-		$("#controls").fadeOut(250)
+		$("#overlay").fadeOut(250)
 		return
 	}
 	
-	$("#controls").fadeIn(250)
+	$("#overlay").fadeIn(250)
 	autoHide = window.setTimeout(() => {
 		window.clearTimeout(autoHide)
 		autoHide = null
-		$("#controls").fadeOut(250)
+		$("#overlay").fadeOut(250)
 	}, 3000)
 })
 
-$("#controls").on("touchstart", function(event) {
+$("#overlay").on("touchstart", function(event) {
 	event.stopImmediatePropagation()
 	if(autoHide) {
 		window.clearTimeout(autoHide)
 		autoHide = window.setTimeout(() => {
 			window.clearTimeout(autoHide)
 			autoHide = null
-			$("#controls").fadeOut(250)
+			$("#overlay").fadeOut(250)
 		}, 3000)
 	}
 })
