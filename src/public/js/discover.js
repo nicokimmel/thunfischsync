@@ -37,13 +37,13 @@ $("#roomSearchId").on("input", function() {
 })
 
 if(storageAvailable) {
-	var roomList = JSON.parse(window.localStorage.lastRooms)
-	window.localStorage.lastRooms = JSON.stringify([])
+	var roomList = JSON.parse(window.localStorage.rooms)
+	window.localStorage.rooms = JSON.stringify([])
 	socket.emit("room-discover", roomList)
 }
 
 socket.on("room-discover", function(roomList) {
-	window.localStorage.lastRooms = JSON.stringify(roomList)
+	window.localStorage.rooms = JSON.stringify(roomList)
 	if(roomList.length == 0) { return }
 	$("#lastRooms").css("visibility", "visible")
 	var html = ""
@@ -54,10 +54,10 @@ socket.on("room-discover", function(roomList) {
 	$("#lastRoomsList").html(html)
 	$(".removeRoom").click(function(event) {
 		var roomId = $(this).siblings("a").text().substring(1)
-		var roomList = JSON.parse(window.localStorage.lastRooms)
+		var roomList = JSON.parse(window.localStorage.rooms)
 		var index = roomList.indexOf(roomId)
 		roomList.splice(index, 1)
-		window.localStorage.lastRooms = JSON.stringify(roomList)
+		window.localStorage.rooms = JSON.stringify(roomList)
 		window.location.reload()
 	})
 })
