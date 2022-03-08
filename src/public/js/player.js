@@ -35,7 +35,7 @@ function setupOverlay(room) {
 		"min" : 0
 	})
 	$("#playPause").html(`<i class="fa-solid fa-${room.playing ? "pause" : "play"}"></i>`)
-	$("#title").html(`<a href="https://www.youtube.com/watch?v=${room.video.id}"><i class="fa-solid fa-link"></i> ${room.video.title}</a>`)
+	$("#title").html(`<a href="https://www.youtube.com/watch?v=${room.video.id}" target=”_blank”><i class="fa-solid fa-link"></i> ${room.video.title}</a>`)
 	updateTime(room.video.duration)
 }
 

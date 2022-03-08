@@ -12,9 +12,9 @@ if("localStorage" in window) {
 	storageAvailable = true
 }
 
-var lock = null
+var wakeLock = null
 if("wakeLock" in navigator) {
-	lock = navigator.wakeLock.request("screen")
+	wakeLock = navigator.wakeLock.request("screen")
 }
 
 function cacheRoom(roomId) {
