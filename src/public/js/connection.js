@@ -3,6 +3,22 @@ const socket = io.connect("localhost:3000")
 
 var sessionId = null
 
+socket.on("disconnect", function() {
+	console.log("Disconnected from server.")
+	$("main, #topControls").empty()
+	$("main").css("display", "block");
+	$("main").html('<h1 style="text-align: center">Verbindung verloren.</h1>')
+	setTimeout(() => { window.location.replace("/") }, 1500)
+})
+
+socket.on("leave", function() {
+	console.log("Kicked from room.")
+	$("main, #topControls").empty()
+	$("main").css("display", "block");
+	$("main").html('<h1 style="text-align: center">Raum geschlossen.</h1>')
+	setTimeout(() => { window.location.replace("/") }, 1500)
+})
+
 socket.on("join", function(room) {
 	sessionId = socket.id
 	
