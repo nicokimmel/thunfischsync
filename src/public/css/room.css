@@ -56,6 +56,7 @@ input, button {
 input[type="range"] {
 	-webkit-appearance: none;
 	-moz-apperance: none;
+	appearance: none;
 	border-radius: 6px;
 	height: 4px;
 	background-image: -webkit-gradient(
@@ -65,10 +66,12 @@ input[type="range"] {
 		color-stop(0, var(--sliderColor)),
 		color-stop(0, var(--sliderBackground))
 	);
+	cursor: pointer;
 }
 
 input[type="range"]::-webkit-slider-thumb {
 	-webkit-appearance: none !important;
+	appearance: none;
 	border-radius: 50%;
 	background-color: var(--sliderThumb);
 	height: 15px;
@@ -81,6 +84,27 @@ input[type="range"]::-moz-range-thumb {
 	background-color: var(--sliderThumb);
 	height: 15px;
 	width: 15px;
+	border: none;
+}
+
+input[type="range"]:focus {
+	outline: none;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+	outline: none;
+}
+
+input[type="range"]:focus::-moz-range-thumb{
+	outline: none;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+	height: 20px;
+}
+
+input[type="range"]::-moz-range-track {
+	height: 20px;
 }
 
 .spacer {
