@@ -27,12 +27,7 @@
 			<input type="hidden" id="roomId" value="<%= roomId %>">
 			<div id="logoText">THUNFISCH SYNC</div>
 			<div id="topControls">
-				<div id="lyricsButton">
-					<i class="fa-solid fa-quote-left"></i>
-				</div>
-				<div id="loopButton">
-					<i class="fa-solid fa-repeat"></i>
-				</div>
+				<div id="loopButton"><i class="fa-solid fa-repeat"></i></div>
 				<div id="viewerCount">0</div>
 			</div>
 		</header>
@@ -42,7 +37,7 @@
 					<i class="fa-solid fa-volume-xmark"></i>
 					<p>Zum Aufheben der Stummschaltung klicken</p>
 				</div>
-				<div id="lyrics">
+				<div id="lyricsWindow">
 					<div id="lyricsBar">
 						<div id="lyricsTitle">Keine Lyrics gefunden.</div>
 						<div id="lyricsHide"><i class="fa-solid fa-xmark"></i></div>
@@ -59,6 +54,7 @@
 						<button id="mute"><i class="fa-solid fa-volume-xmark"></i></button>
 						<input id="volume" type="range" min="0" max="100" step="1" value="0"></input>
 						<div class="spacer"></div>
+						<button id="lyrics"><i class="fa-solid fa-music"></i></button>
 						<button id="options"><i class="fa-solid fa-gear"></i></button>
 						<button id="fullscreen"><i class="fa-solid fa-expand"></i></button>
 					</div>

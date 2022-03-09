@@ -182,7 +182,7 @@ main #video #unmute i {
 	font-size: 2.5em;
 }
 
-main #video #lyrics {
+main #video #lyricsWindow {
 	z-index: 4;
 	width: 400px;
 	height: 600px;
@@ -191,7 +191,7 @@ main #video #lyrics {
 	box-sizing: border-box;
 }
 
-main #video #lyrics #lyricsBar {
+main #video #lyricsWindow #lyricsBar {
 	width: 100%;
 	height: 35px;
 	line-height: 35px;
@@ -201,21 +201,21 @@ main #video #lyrics #lyricsBar {
 	cursor: grab;
 }
 
-main #video #lyrics #lyricsBar #lyricsTitle {
+main #video #lyricsWindow #lyricsBar #lyricsTitle {
 	margin-left: 10px;
 	overflow: hidden;
 }
 
-main #video #lyrics #lyricsBar #lyricsHide {
+main #video #lyricsWindow #lyricsBar #lyricsHide {
 	margin-right: 10px;
 	cursor: pointer;
 }
 
-main #video #lyrics #lyricsBar #lyricsHide:hover {
+main #video #lyricsWindow #lyricsBar #lyricsHide:hover {
 	color: var(--colorDarkText);
 }
 
-main #video #lyrics #lyricsText {
+main #video #lyricsWindow #lyricsText {
 	width: 100%;
 	height: calc(100% - 35px);
 	padding: 15px;
@@ -292,8 +292,10 @@ main #video #overlay #controls #volume {
 }
 
 main #video #overlay #controls #time {
+	width: 50px;
 	margin: 0 15px 0 10px;
 	font-size: 0.9;
+	text-align: center;
 }
 
 main #search {
