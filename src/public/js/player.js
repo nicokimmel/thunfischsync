@@ -51,12 +51,12 @@ var subtitles = false
 function setSubtitles() {
 	if(subtitles) {
 		player.loadModule("captions")
-		//player.setOption("captions", "track", {"languageCode": "de"})
+		player.setOption("captions", "track", {"languageCode": "de"})
 		player.loadModule("cc")
-		//player.setOption("cc", "track", {"languageCode": "de"})
+		player.setOption("cc", "track", {"languageCode": "de"})
 	} else {
-		//player.unloadModule("captions")
-		//player.unloadModule("cc")
+		player.unloadModule("captions")
+		player.unloadModule("cc")
 	}
 }
 $("#subtitleToggle").click(function(event) {
