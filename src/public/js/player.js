@@ -82,6 +82,7 @@ $("#video").on("touchstart", function() {
 	if(autoHide && $(this).is(":visible")) {
 		window.clearTimeout(autoHide)
 		autoHide = null
+		$("#optionsWindow").fadeOut(250)
 		$("#overlay").fadeOut(250)
 		return
 	}
@@ -90,6 +91,7 @@ $("#video").on("touchstart", function() {
 	autoHide = window.setTimeout(() => {
 		window.clearTimeout(autoHide)
 		autoHide = null
+		$("#optionsWindow").fadeOut(250)
 		$("#overlay").fadeOut(250)
 	}, 3000)
 })

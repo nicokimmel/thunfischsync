@@ -29,6 +29,14 @@
 		top: 25px;
 	}
 	
+	main #video #overlay #optionsWindow {
+		width: 100%;
+		height: 70%;
+		top: 20px;
+		position: absolute;
+		align-self: unset;
+	}
+	
 	main #video #overlay #controls #volume {
 		display: none;
 	}
