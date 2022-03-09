@@ -20,11 +20,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-	playerReady = true
-	
-	player.unloadModule("captions")
-	player.unloadModule("cc")
-	
+	playerReady = true	
 	player.mute()
 	socket.emit("join", roomId)
 }
@@ -36,14 +32,48 @@ function setupOverlay(room) {
 	})
 	$("#playPause").html(`<i class="fa-solid fa-${room.playing ? "pause" : "play"}"></i>`)
 	$("#title").html(`<a href="https://www.youtube.com/watch?v=${room.video.id}" target=”_blank”><i class="fa-solid fa-link"></i> ${room.video.title}</a>`)
+	$("#loopToggle").prop("checked", room.loop)
+	setSubtitles()
 	updateTime(room.video.duration)
 }
+
+//  OPTIONS  //
+$("#optionsWindow").hide()
+$("#options").click(function() {
+	$("#optionsWindow").toggle()
+})
+
+$("#loopToggle").click(function(event) {
+	socket.emit("loop")
+})
+
+var subtitles = false
+function setSubtitles() {
+	if(subtitles) {
+		player.loadModule("captions")
+		//player.setOption("captions", "track", {"languageCode": "de"})
+		player.loadModule("cc")
+		//player.setOption("cc", "track", {"languageCode": "de"})
+	} else {
+		//player.unloadModule("captions")
+		//player.unloadModule("cc")
+	}
+}
+$("#subtitleToggle").click(function(event) {
+	subtitles = !subtitles
+	setSubtitles()
+})
+
+$("#speedToggle").click(function(event) {
+	$("#speedToggle").prop("checked", false)
+})
 
 //  OVERLAY  //
 $("#overlay").hide()
 $("#video").hover(function() {
 	$("#overlay").fadeIn(250)
 }, function() {
+	$("#optionsWindow").fadeOut(250)
 	$("#overlay").fadeOut(250)
 })
 
@@ -178,13 +208,3 @@ $("#unmute").click(function(event) {
 	var volume = getCachedVolume()
 	updateVolume(volume)
 })
-
-//  LOOP  //
-$("#loopButton").click(function(event) {
-	socket.emit("loop")
-})
-
-function setLoop(looping) {
-	var color = looping ? "var(--colorBlue)" : "var(--colorGray)"
-	$("#loopButton").css("background-color", color)
-}

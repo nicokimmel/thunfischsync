@@ -8,7 +8,6 @@ socket.on("queue", function(videoList) {
 function loadQueue(queue) {
 	queueList = queue
 	buildQueueList()
-	$("#loopButton").css("background-color", "red")
 }
 
 function buildQueueList() {

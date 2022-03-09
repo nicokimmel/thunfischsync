@@ -107,6 +107,59 @@ input[type="range"]::-moz-range-track {
 	height: 20px;
 }
 
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 42px;
+	height: 25px;
+}
+
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+	border-radius: 34px;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 17px;
+	width: 17px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+	border-radius: 50%;
+}
+
+input:checked + .slider {
+	background-color: #2196F3;
+}
+
+input:focus + .slider {
+	box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+	-webkit-transform: translateX(18px);
+	-ms-transform: translateX(18px);
+	transform: translateX(18px);
+}
+
 .spacer {
 	flex-grow: 1;
 }
@@ -139,12 +192,12 @@ header #logoText {
 	color: var(--colorBlue);
 }
 
-header #topControls {
+header #infoArena {
 	margin-right: 25px;
 	display: flex;
 }
 
-header #topControls div {
+header #infoArena div {
 	min-width: 40px;
 	height: 40px;
 	line-height: 40px;
@@ -157,11 +210,11 @@ header #topControls div {
 	cursor: pointer;
 }
 
-header #topControls div:hover {
+header #infoArena div:hover {
 	background-color: var(--colorBlue);
 }
 
-header #topControls #viewerCount {
+header #infoArena #viewerCount {
 	font-size: 1.5em;
 	cursor: default;
 }
@@ -179,13 +232,13 @@ main #video {
 	max-height: 84vh;
 	aspect-ratio: 16/9;
 	margin: 0 auto;
+	box-sizing: border-box;
 	display: grid;
 	justify-items: center;
 	align-items: center;
 	align-self: center;
 	position: relative;
 	border: 1px solid var(--colorBlue);
-	box-sizing: border-box;
 }
 
 main #video #unmute {
@@ -210,9 +263,9 @@ main #video #lyricsWindow {
 	z-index: 4;
 	width: 400px;
 	height: 600px;
+	box-sizing: border-box;
 	position: absolute !important;
 	background-color: rgba(28, 28, 28, 0.95);
-	box-sizing: border-box;
 }
 
 main #video #lyricsWindow #lyricsBar {
@@ -243,8 +296,8 @@ main #video #lyricsWindow #lyricsText {
 	width: 100%;
 	height: calc(100% - 35px);
 	padding: 15px;
-	overflow-y: scroll;
 	box-sizing: border-box;
+	overflow-y: scroll;
 }
 
 main #video #player {
@@ -270,11 +323,26 @@ main #video #overlay #title {
 	width: 100%;
 	height: 35px;
 	padding: 15px 0 0 15px;
+	box-sizing: border-box;
 	align-self: flex-start;
 	font-size: 1.2em;
 	text-shadow: 1px 1px var(--colorBackground);
 	background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+main #video #overlay #optionsWindow {
+	width: 320px;
+	height: 150px;
+	margin-right: 15px;
+	padding: 0 15px 0 20px;
 	box-sizing: border-box;
+	align-self: flex-end;
+	display: grid;
+	grid-template-columns: 80% 20%;
+	grid-template-rows: 1f 1f 1f;
+	align-items: center;
+	align-content: space-evenly;
+	background-color: rgba(28, 28, 28, 0.85);
 }
 
 main #video #overlay #progress {
@@ -287,11 +355,11 @@ main #video #overlay #controls {
 	width: 100%;
 	height: 35px;
 	padding: 0 10px 10px 10px;
+	box-sizing: border-box;
 	align-self: flex-end;
 	display: flex;
 	align-items: center;
 	background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 0) 100%);
-	box-sizing: border-box;
 }
 
 main #video #overlay #controls button {
@@ -317,7 +385,7 @@ main #video #overlay #controls #volume {
 
 main #video #overlay #controls #time {
 	width: 50px;
-	margin: 0 20px 0 10px;
+	margin: 0 22px 0 10px;
 	font-size: 0.9;
 	text-align: center;
 }
@@ -370,10 +438,10 @@ main #search #searchList #searchAddAllButton {
 	width: 100%;
 	height: 35px;
 	line-height: 35px;
+	box-sizing: border-box;
 	text-align: center;
 	background-color: var(--colorBlack);
 	border: 1px solid var(--colorGray);
-	box-sizing: border-box;
 	cursor: pointer;
 }
 
@@ -596,12 +664,12 @@ footer {
 	width: 100%;
 	height: 140px;
 	padding: 20px 40px 20px 40px;
+	box-sizing: border-box;
 	display: flex;
 	align-items: center;
 	font-family: "Open Sans", sans-serif;
 	font-size: 0.9em;
 	background-color: var(--colorElement);
-	box-sizing: border-box;
 }
 
 footer #logoImage {

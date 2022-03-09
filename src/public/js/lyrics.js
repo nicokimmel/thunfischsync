@@ -14,7 +14,7 @@ function requestLyrics() {
 	socket.emit("lyrics")
 }
 
-$("#lyricsWindow").toggle()
+$("#lyricsWindow").hide()
 $("#lyrics, #lyricsHide").click(function(event) {
 	$("#lyricsWindow").toggle()
 })

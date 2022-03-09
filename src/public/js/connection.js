@@ -35,7 +35,6 @@ socket.on("join", function(room) {
 	cacheRoom(room.id)
 	loadQueue(room.queue)
 	loadTags(room.video.tags)
-	setLoop(room.loop)
 	requestLyrics()
 	
 	console.log(`Connected to room #${room.id} as [${sessionId}]`)
@@ -85,7 +84,7 @@ socket.on("video", function(room) {
 })
 
 socket.on("loop", function(enabled) {
-	setLoop(enabled)
+	$("#loopToggle").prop("checked", enabled)
 })
 
 socket.on("viewers", function(amount) {

@@ -26,8 +26,7 @@
 		<header>
 			<input type="hidden" id="roomId" value="<%= roomId %>">
 			<div id="logoText">THUNFISCH SYNC</div>
-			<div id="topControls">
-				<div id="loopButton"><i class="fa-solid fa-repeat"></i></div>
+			<div id="infoArena">
 				<div id="viewerCount">0</div>
 			</div>
 		</header>
@@ -47,6 +46,23 @@
 				<div id="overlay">
 					<div id="title">Test video 2019</div>
 					<div class="spacer"></div>
+					<div id="optionsWindow">
+						<span>Loop</span>
+						<label class="switch">
+							<input id="loopToggle" type="checkbox">
+							<span class="slider"></span>
+						</label>
+						<span>Untertitel</span>
+						<label class="switch">
+							<input id="subtitleToggle" type="checkbox">
+							<span class="slider"></span>
+						</label>
+						<span>Geschwindigkeit</span>
+						<label class="switch">
+							<input id="speedToggle" type="checkbox">
+							<span class="slider"></span>
+						</label>
+					</div>
 					<input id="progress" type="range" min="0" max="100" step="1" value="0"></input>
 					<div id="controls">
 						<button id="playPause"><i class="fa-solid fa-play"></i></button>
