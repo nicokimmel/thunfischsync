@@ -317,7 +317,7 @@ main #video #overlay #controls #volume {
 
 main #video #overlay #controls #time {
 	width: 50px;
-	margin: 0 15px 0 10px;
+	margin: 0 20px 0 10px;
 	font-size: 0.9;
 	text-align: center;
 }
