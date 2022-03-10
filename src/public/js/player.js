@@ -128,33 +128,16 @@ $("#overlay").on("touchstart", function(event) {
 
 //  FULLSCREEN  //
 $("#fullscreen").click(function(event) {
-	if (
-		document.fullscreenElement ||
-		document.webkitFullscreenElement ||
-		document.mozFullScreenElement ||
-		document.msFullscreenElement
-	) {
-		if (document.exitFullscreen) {
-			document.exitFullscreen()
-		} else if (document.mozCancelFullScreen) {
-			document.mozCancelFullScreen()
-		} else if (document.webkitExitFullscreen) {
-			document.webkitExitFullscreen()
-		} else if (document.msExitFullscreen) {
-			document.msExitFullscreen()
-		}
+	if(document.fullscreenElement) {
+		document.exitFullscreen()
 	} else {
-		element = $('#video').get(0)
-		if (element.requestFullscreen) {
-			element.requestFullscreen()
-		} else if (element.mozRequestFullScreen) {
-			element.mozRequestFullScreen()
-		} else if (element.webkitRequestFullscreen) {
-			element.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT)
-		} else if (element.msRequestFullscreen) {
-			element.msRequestFullscreen()
-		}
+		var element = $("#video").get(0)
+		element.requestFullscreen()
 	}
+})
+$("#video").bind("fullscreenchange", function(event) {
+	var border = document.fullscreenElement ? "none" : "1px solid var(--colorBlue)"
+	$(this).css("border", border)
 })
 
 //  PLAYPAUSE  //
