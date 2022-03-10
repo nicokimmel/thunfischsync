@@ -37,6 +37,24 @@ function setupOverlay(room) {
 	updateTime(room.video.duration)
 }
 
+//  TOOLTIPS  //
+$("#tooltip").hide()
+function showTooltip(element, text, mouseX) {
+	$("#tooltip").html(text)
+	$("#tooltip").show()
+	
+	var position = $(element).offset()
+	var x = mouseX || position.left + $(element).outerWidth() / 2
+	$("#tooltip").offset({
+		top: position.top - $("#tooltip").outerHeight() - 10,
+		left: x - ($("#tooltip").outerWidth() / 2)
+	})
+	
+	$(element).one("mouseleave", function() {
+		$("#tooltip").hide()
+	})
+}
+
 //  OPTIONS  //
 $("#optionsWindow").hide()
 $("#options").click(function() {
@@ -144,6 +162,10 @@ $("#playPause").click(function(event) {
 	var state = player.getPlayerState() == YT.PlayerState.PLAYING ? "pause" : "play"
 	socket.emit(state)
 })
+$("#playPause").mouseenter(function(event) {
+	var text = player.getPlayerState() == YT.PlayerState.PLAYING ? "Pause" : "Play"
+	showTooltip(this, text)
+})
 
 //  TIME  //
 function updateTime(time) {
@@ -170,10 +192,14 @@ $("#progress").on("input", function(event) {
 	updateProgress($("#progress").val())
 	updateTime(parseInt($("#progress").val()))
 })
-
 $("#progress").on("change", function(event) {
 	seeking = false
 	socket.emit("seek", parseInt($("#progress").val()))
+})
+$("#progress").on("mousemove", function(event) {
+	var value = ((event.offsetX) / $(event.target).width()) * parseInt(event.target.getAttribute("max"), 10)
+	var timestamp =  new Date(parseInt(value) * 1000).toISOString().substring(11, 19)
+	showTooltip(this, timestamp, event.pageX)
 })
 
 //  VOLUME  //

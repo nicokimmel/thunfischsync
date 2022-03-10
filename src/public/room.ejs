@@ -23,6 +23,7 @@
 		<link rel="stylesheet" href="/css/mobile.css">
 	</head>
 	<body>
+		<div id="tooltip"></div>
 		<header>
 			<input type="hidden" id="roomId" value="<%= roomId %>">
 			<div id="logoText">THUNFISCH SYNC</div>
@@ -67,12 +68,12 @@
 					<div id="controls">
 						<button id="playPause"><i class="fa-solid fa-play"></i></button>
 						<span id="time">14:36</span>
-						<button id="mute"><i class="fa-solid fa-volume-xmark"></i></button>
+						<button id="mute" onmouseover='showTooltip(this, "Stummschalten")'><i class="fa-solid fa-volume-xmark"></i></button>
 						<input id="volume" type="range" min="0" max="100" step="1" value="0"></input>
 						<div class="spacer"></div>
-						<button id="lyrics"><i class="fa-solid fa-music"></i></button>
-						<button id="options"><i class="fa-solid fa-gear"></i></button>
-						<button id="fullscreen"><i class="fa-solid fa-expand"></i></button>
+						<button id="lyrics" onmouseover='showTooltip(this, "Lyrics")'><i class="fa-solid fa-music"></i></button>
+						<button id="options" onmouseover='showTooltip(this, "Einstellungen")'><i class="fa-solid fa-gear"></i></button>
+						<button id="fullscreen" onmouseover='showTooltip(this, "Vollbild")'><i class="fa-solid fa-expand"></i></button>
 					</div>
 				</div>
 				<div id="player"></div>

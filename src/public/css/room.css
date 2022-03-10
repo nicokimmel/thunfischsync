@@ -160,6 +160,15 @@ input:checked + .slider:before {
 	transform: translateX(18px);
 }
 
+#tooltip {
+	position: absolute;
+	display: none;
+	z-index: 99;
+	padding: 5px 15px 5px 15px;
+	box-sizing: border-box;
+	background: rgba(28, 28, 28, 0.95);
+}
+
 .spacer {
 	flex-grow: 1;
 }
