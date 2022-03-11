@@ -1,7 +1,7 @@
 var tagList = []
 
 function loadTags(tags) {
-	tagList = tags
+	tagList = tags || []
 	buildTagList()
 }
 

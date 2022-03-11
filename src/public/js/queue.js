@@ -6,7 +6,7 @@ socket.on("queue", function(videoList) {
 })
 
 function loadQueue(queue) {
-	queueList = queue
+	queueList = queue || []
 	buildQueueList()
 }
 
