@@ -17,7 +17,7 @@ $("#searchField").on("keypress", function(event) {
 	}
 })
 
-$("#searchfield").on("input", function() {
+$("#searchField").on("input", function() {
 	if($(this).val() === "") {
 		$("#results").html("")
 		searchList = []
