@@ -27,11 +27,11 @@ module.exports = function(grunt) {
 					"dist/public/js/room.min.js": [
 						"src/public/js/utils.js",
 						"src/public/js/app.js",
+						"src/public/js/connection.js",
 						"src/public/js/search.js",
 						"src/public/js/queue.js",
 						"src/public/js/tags.js",
 						"src/public/js/lyrics.js",
-						"src/public/js/connection.js",
 						"src/public/js/commands.js",
 						"src/public/js/player.js"
 					],
