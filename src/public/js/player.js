@@ -1,5 +1,4 @@
 var player = null
-var playerReady = false
 function onYouTubeIframeAPIReady() {
 	player = new YT.Player("player", {
 		playerVars: {
@@ -12,17 +11,13 @@ function onYouTubeIframeAPIReady() {
 			origin: "https://sync.thunfisch.lol",
 		},
 		events: {
-			"onReady": onPlayerReady,
-			//"onStateChange": onPlayerStateChange,
-			//"onPlaybackRateChange" : onPlaybackRateChange,
+			"onReady": () => {
+				sync.playerReady = true
+				player.mute()
+				socket.emit("join", roomId)
+			}
 		},
 	})
-}
-
-function onPlayerReady(event) {
-	playerReady = true
-	player.mute()
-	socket.emit("join", roomId)
 }
 
 function refreshOverlay(room) {

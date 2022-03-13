@@ -1,19 +1,17 @@
-var queueList = []
-
 socket.on("queue", function(videoList) {
-	queueList = videoList || []
+	sync.queue.list = videoList || []
 	buildQueueList()
 })
 
 function loadQueue(queue) {
-	queueList = queue || []
+	sync.queue.list = queue || []
 	buildQueueList()
 }
 
 function buildQueueList() {
 	var html = ""
-	for(var i = 0; i < queueList.length; i++) {
-		var video = queueList[i]
+	for(var i = 0; i < sync.queue.list.length; i++) {
+		var video = sync.queue.list[i]
 		var duration = new Date(parseInt(video.duration) * 1000).toISOString().substring(11, 19)
 		var title = truncateOnWord(video.title, 50)
 		var channelName = truncateOnWord(video.channel.name, 20)
@@ -58,7 +56,7 @@ function buildQueueList() {
 	
 	$(".queueItemPlay").click(function(event) {
 		var index = parseInt($(this).siblings(".queueItemIndex").val())
-		var video = queueList[index]
+		var video = sync.queue.list[index]
 		socket.emit("video", [video], index)
 	})
 	$(".queueItemUp").click(function(event) {
@@ -67,7 +65,7 @@ function buildQueueList() {
 	})
 	$(".queueItemDown").click(function(event) {
 		var index = parseInt($(this).siblings(".queueItemIndex").val())
-		socket.emit("queue-move", index, queueList.length+1)
+		socket.emit("queue-move", index, sync.queue.list.length+1)
 	})
 	$(".queueItemDelete").click(function(event) {
 		var index = parseInt($(this).siblings(".queueItemIndex").val())

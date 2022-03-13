@@ -1,7 +1,20 @@
 const roomId = $("#roomId").val()
 const socket = io.connect("localhost:3000")
 
-var sessionId = null
+var sync = {
+	sessionId: "none",
+	playerReady: false,
+	queue: {
+		list: []
+	},
+	search: {
+		list: [],
+		last: ""
+	},
+	tags: {
+		list: []
+	}
+}
 
 socket.on("disconnect", function() {
 	console.log("Disconnected from server.")
@@ -20,7 +33,7 @@ socket.on("leave", function() {
 })
 
 socket.on("join", function(room) {
-	sessionId = socket.id
+	sync.sessionId = socket.id
 	
 	player.loadVideoById(room.video.id, room.time)
 	
@@ -37,7 +50,7 @@ socket.on("join", function(room) {
 	window.loadTags?.(room.video.tags)
 	window.requestLyrics?.()
 	
-	console.log(`Connected to room #${room.id} as [${sessionId}]`)
+	console.log(`Connected to room #${room.id} as [${sync.sessionId}]`)
 })
 
 socket.on("tick", function(playing, time, speed) {

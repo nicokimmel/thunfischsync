@@ -1,12 +1,9 @@
-var searchList = []
-var lastSearch = ""
-
 function search(searchTerm) {
-	if(searchTerm === "" || searchTerm === lastSearch) {
+	if(searchTerm === "" || searchTerm === sync.search.last) {
 		return
 	}
-	searchList = []
-	lastSearch = searchTerm
+	sync.search.list = []
+	sync.search.last = searchTerm
 	$("#searchList").html("<p id=\"searchLabel\">Lädt...</p>")
 	socket.emit("search", searchTerm)
 }
@@ -20,8 +17,10 @@ $("#searchField").on("keypress", function(event) {
 $("#searchField").on("input", function() {
 	if($(this).val() === "") {
 		$("#results").html("")
-		searchList = []
-		lastSearch = ""
+		sync.search = {
+			list: [],
+			last: ""
+		}
 	}
 })
 
@@ -35,21 +34,21 @@ $("#searchField").bind("paste", function(event) {
 })
 
 socket.on("search", function(videoList) {
-	searchList = videoList || []
+	sync.search.list = videoList || []
 	buildSearchList()
 })
 
 function buildSearchList() {
-	if(searchList.length === 0) {
+	if(sync.search.list.length === 0) {
 		$("#searchList").html("<p id=\"searchLabel\">Keine Ergebnisse</p>")
 		return
 	}
 	var html = ""
-	if(searchList.length > 1) {
+	if(sync.search.list.length > 1) {
 		html += "<div id=\"searchAddAllButton\">Alle hinzufügen</div>"
 	}
-	for(var i = 0; i < searchList.length; i++) {
-		var video = searchList[i]
+	for(var i = 0; i < sync.search.list.length; i++) {
+		var video = sync.search.list[i]
 		var duration = new Date(parseInt(video.duration) * 1000).toISOString().substring(11, 19)
 		var title = truncateOnWord(video.title, 50)
 		var channelName = truncateOnWord(video.channel.name, 20)
@@ -75,16 +74,16 @@ function buildSearchList() {
 	$("#searchAddAllButton").click(function() {
 		$(this).off()
 		$(this).remove()
-		socket.emit("queue-add", searchList)
+		socket.emit("queue-add", sync.search.list)
 	})
 	$(".searchItemPlay").click(function() {
 		var index = $(this).siblings(".searchItemIndex").val()
-		var video = searchList[index]
+		var video = sync.search.list[index]
 		socket.emit("video", [video])
 	})
 	$(".searchItemQueue").click(function() {
 		var index = $(this).siblings(".searchItemIndex").val()
-		var video = searchList[index]
+		var video = sync.search.list[index]
 		socket.emit("queue-add", [video])
 	})
 }
