@@ -33,9 +33,9 @@ socket.on("join", function(room) {
 	refreshOverlay(room)
 	
 	cacheRoom(room.id)
-	loadQueue(room.queue)
-	loadTags(room.video.tags)
-	requestLyrics()
+	window.loadQueue?.(room.queue)
+	window.loadTags?.(room.video.tags)
+	window.requestLyrics?.()
 	
 	console.log(`Connected to room #${room.id} as [${sessionId}]`)
 })

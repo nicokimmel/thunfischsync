@@ -364,7 +364,6 @@ main #video #overlay #optionsWindow #speedWrapper #speedSelection {
 	width: 100%;
 }
 
-
 main #video #overlay #progress {
 	width: calc(100% - 30px);
 	margin: 15px;
