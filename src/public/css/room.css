@@ -113,6 +113,7 @@ input[type="range"]::-moz-range-track {
 	display: inline-block;
 	width: 42px;
 	height: 25px;
+	margin: 0 auto;
 }
 
 .switch input {
@@ -349,7 +350,7 @@ main #video #overlay #optionsWindow {
 	align-self: flex-end;
 	display: grid;
 	grid-template-columns: 70% 30%;
-	grid-template-rows: 1f 1f 1f;
+	grid-template-rows: 33% 33% 33%;
 	align-items: center;
 	align-content: space-evenly;
 	background-color: rgba(28, 28, 28, 0.85);

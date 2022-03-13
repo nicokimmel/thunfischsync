@@ -28,8 +28,10 @@ function refreshOverlay(room) {
 	$("#playPause").html(`<i class="fa-solid fa-${room.playing ? "pause" : "play"}"></i>`)
 	$("#title").html(`<a href="https://www.youtube.com/watch?v=${room.video.id}" target=”_blank”><i class="fa-solid fa-link"></i> ${room.video.title}</a>`)
 	$("#loopToggle").prop("checked", room.loop)
-	setSubtitles()
 	updateTime(room.video.duration)
+	window.setTimeout(() => {
+		setSubtitles()
+	}, 1000)
 }
 
 //  TOOLTIPS  //
@@ -82,7 +84,7 @@ function updatePlaybackRate(speed) {
 	var val = (speed - $("#speedSelection").attr("min")) / ($("#speedSelection").attr("max") - $("#speedSelection").attr("min"))
 	$("#speedSelection").css("background-image", `-webkit-gradient(linear, left top, right top, color-stop(${val}, var(--sliderColor)), color-stop(${val}, var(--sliderBackground)))`)
 	$("#speedSelection").val(speed)
-	$("#speedLabel").text(`${speed}x`)
+	//$("#speedLabel").text(`${speed}x`)
 }
 $("#speedSelection").on("input", function(event) {
 	updatePlaybackRate($("#speedSelection").val())
@@ -90,6 +92,9 @@ $("#speedSelection").on("input", function(event) {
 $("#speedSelection").on("change", function(event) {
 	var speed = parseFloat($("#speedSelection").val())
 	socket.emit("speed", speed)
+})
+$("#speedSelection").on("mousemove", function(event) {
+	showTooltip(this, `${$("#speedSelection").val()}x`)
 })
 
 //  OVERLAY  //
