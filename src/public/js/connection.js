@@ -28,9 +28,9 @@ socket.on("join", function(room) {
 		room.playing ? player.playVideo() : player.pauseVideo()
 	}, 500)
 	
-	player.setPlaybackRate(parseFloat(room.speed))
+	updatePlaybackRate(room.speed)
 	
-	setupOverlay(room)
+	refreshOverlay(room)
 	
 	cacheRoom(room.id)
 	loadQueue(room.queue)
@@ -70,7 +70,7 @@ socket.on("seek", function(time) {
 })
 
 socket.on("speed", function(speed) {
-	
+	updatePlaybackRate(speed)
 })
 
 socket.on("video", function(room) {
@@ -80,7 +80,7 @@ socket.on("video", function(room) {
 	}, 500)
 	tagList = room.video.tags
 	buildTagList()
-	setupOverlay(room)
+	refreshOverlay(room)
 })
 
 socket.on("loop", function(enabled) {

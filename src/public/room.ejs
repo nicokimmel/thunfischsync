@@ -23,9 +23,9 @@
 		<link rel="stylesheet" href="/css/mobile.css">
 	</head>
 	<body>
-		<div id="tooltip"></div>
 		<header>
 			<input type="hidden" id="roomId" value="<%= roomId %>">
+			<div id="tooltip"></div>
 			<div id="logoText">THUNFISCH SYNC</div>
 			<div id="infoArena">
 				<div id="viewerCount">0</div>
@@ -45,7 +45,7 @@
 					<div id="lyricsText"></div>
 				</div>
 				<div id="overlay">
-					<div id="title">Test video 2019</div>
+					<div id="title"></div>
 					<div class="spacer"></div>
 					<div id="optionsWindow">
 						<span>Loop</span>
@@ -59,10 +59,11 @@
 							<span class="slider"></span>
 						</label>
 						<span>Geschwindigkeit</span>
-						<label class="switch">
-							<input id="speedToggle" type="checkbox">
-							<span class="slider"></span>
-						</label>
+						<!--<select id="speedSelection"></select>-->
+						<div id="speedWrapper">
+							<input id="speedSelection" type="range" min="0.25" max="2" step="0.25" value="1"></input>
+							<span id="speedLabel">1.0x</span>
+						</div>
 					</div>
 					<input id="progress" type="range" min="0" max="100" step="1" value="0"></input>
 					<div id="controls">
@@ -79,10 +80,10 @@
 				<div id="player"></div>
 			</div>
 			<div id="search">
-				<form id="searchForm">
+				<form id="searchForm" onsubmit="return false">
 					<input id="searchField" placeholder="YouTube Suche" type="text" autocomplete="off" required></input>
 					<button id="searchReset" type="reset"><i class="fa-solid fa-xmark"></i></button>
-					<button id="searchButton"><i class="fa-solid fa-magnifying-glass"></i></button>
+					<button id="searchButton" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
 				</form>
 				<div id="searchList"></div>
 			</div>

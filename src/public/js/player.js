@@ -20,12 +20,12 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-	playerReady = true	
+	playerReady = true
 	player.mute()
 	socket.emit("join", roomId)
 }
 
-function setupOverlay(room) {
+function refreshOverlay(room) {
 	$("#progress").attr({
 		"max" : room.video.duration,
 		"min" : 0
@@ -82,8 +82,19 @@ $("#subtitleToggle").click(function(event) {
 	setSubtitles()
 })
 
-$("#speedToggle").click(function(event) {
-	$("#speedToggle").prop("checked", false)
+function updatePlaybackRate(speed) {
+	player.setPlaybackRate(speed)
+	var val = (speed - $("#speedSelection").attr("min")) / ($("#speedSelection").attr("max") - $("#speedSelection").attr("min"))
+	$("#speedSelection").css("background-image", `-webkit-gradient(linear, left top, right top, color-stop(${val}, var(--sliderColor)), color-stop(${val}, var(--sliderBackground)))`)
+	$("#speedSelection").val(speed)
+	$("#speedLabel").text(`${speed}x`)
+}
+$("#speedSelection").on("input", function(event) {
+	updatePlaybackRate($("#speedSelection").val())
+})
+$("#speedSelection").on("change", function(event) {
+	var speed = parseFloat($("#speedSelection").val())
+	socket.emit("speed", speed)
 })
 
 //  OVERLAY  //
@@ -91,8 +102,10 @@ $("#overlay").hide()
 $("#video").hover(function() {
 	$("#overlay").fadeIn(250)
 }, function() {
-	$("#optionsWindow").fadeOut(250)
-	$("#overlay").fadeOut(250)
+	if(!$("#optionsWindow").is(":visible")) {
+		$("#optionsWindow").fadeOut(250)
+		$("#overlay").fadeOut(250)
+	}
 })
 
 var autoHide = null

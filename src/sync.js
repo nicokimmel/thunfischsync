@@ -123,6 +123,7 @@ io.on("connection", function(client) {
 	client.on("speed", function(speed) {
 		if(!room) { return }
 		if(typeof speed !== "number") { return }
+		if(speed > 10 || speed < 0.1) { return }
 		room.speed = speed
 		io.in(room.id).emit("speed", speed)
 		logger.log(`Changed speed in room #${room.id} to ${speed}`, ip)
