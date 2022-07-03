@@ -453,7 +453,6 @@ main #search #searchForm #searchReset {
 	outline: 0;
 	cursor: pointer;
 	border: none;
-	position: absolute;
 	margin: 12px 0 0 -25px;
 }
 
