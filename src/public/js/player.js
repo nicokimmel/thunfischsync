@@ -97,17 +97,22 @@ $("#speedSelection").on("mousemove", function(event) {
 })
 
 //  OVERLAY  //
+var autoHide = null
+
 $("#overlay").hide()
-$("#video").hover(function() {
+$("#video").on("mousemove", function() {
 	$("#overlay").fadeIn(250)
-}, function() {
-	if(!$("#optionsWindow").is(":visible")) {
+	$("#video").css("cursor", "default")
+	window.clearTimeout(autoHide)
+	autoHide = window.setTimeout(() => {
+		window.clearTimeout(autoHide)
+		autoHide = null
 		$("#optionsWindow").fadeOut(250)
 		$("#overlay").fadeOut(250)
-	}
+		$("#video").css("cursor", "none")
+	}, 3000)
 })
 
-var autoHide = null
 $("#video").on("touchstart", function() {
 	if(autoHide && $(this).is(":visible")) {
 		window.clearTimeout(autoHide)
