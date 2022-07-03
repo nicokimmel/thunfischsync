@@ -28,6 +28,11 @@ $("#searchButton").click(function() {
 	search($("#searchField").val())
 })
 
+$("#searchReset").click(function() {
+	$("#searchList").html("")
+	sync.search.last = ""
+})
+
 $("#searchField").bind("paste", function(event) {
 	var pasted = event.originalEvent.clipboardData.getData("text")
 	search(pasted)
