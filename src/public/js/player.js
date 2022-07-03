@@ -84,7 +84,6 @@ function updatePlaybackRate(speed) {
 	var val = (speed - $("#speedSelection").attr("min")) / ($("#speedSelection").attr("max") - $("#speedSelection").attr("min"))
 	$("#speedSelection").css("background-image", `-webkit-gradient(linear, left top, right top, color-stop(${val}, var(--sliderColor)), color-stop(${val}, var(--sliderBackground)))`)
 	$("#speedSelection").val(speed)
-	//$("#speedLabel").text(`${speed}x`)
 }
 $("#speedSelection").on("input", function(event) {
 	updatePlaybackRate($("#speedSelection").val())

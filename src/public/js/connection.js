@@ -91,8 +91,7 @@ socket.on("video", function(room) {
 	window.setTimeout(() => {
 		room.playing ? player.playVideo() : player.pauseVideo()
 	}, 500)
-	tagList = room.video.tags
-	buildTagList()
+	window.loadTags?.(room.video.tags)
 	refreshOverlay(room)
 })
 
