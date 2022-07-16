@@ -16,7 +16,7 @@ $("#searchField").on("keypress", function(event) {
 
 $("#searchField").on("input", function() {
 	if($(this).val() === "") {
-		$("#results").html("")
+		$("#searchList").html("")
 		sync.search = {
 			list: [],
 			last: ""
