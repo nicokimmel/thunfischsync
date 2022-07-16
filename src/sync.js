@@ -20,6 +20,7 @@ const cli = new Console(io, roomList)
 
 //  STARTUP  //
 function startup() {
+	youtube.createFilterList()
 	roomList.create("DEBUG123", true)
 	logger.log("Loading sticky rooms...")
 	roomList.load()

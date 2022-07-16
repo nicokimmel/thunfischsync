@@ -4,7 +4,20 @@ const YouTube = class {
 		this.parser = require("js-video-url-parser")
 		this.moment = require("moment")
 		this.key = process.env.YOUTUBE_API_KEY
+		this.filter = process.env.CHANNEL_FILTER
 		this.url = "https://youtube.googleapis.com/youtube/v3"
+	}
+	
+	createFilterList() {
+		this.filterList = {}
+		if(!this.filter) { return }
+		
+		var splitFilter = this.filter.split(",")
+		for(var i = 0; i < splitFilter.length; i++) {
+			this.filterList[splitFilter[i]] = true
+		}
+		
+		console.log(this.filterList)
 	}
 	
 	parse(searchterm) {
@@ -38,17 +51,19 @@ const YouTube = class {
 				var video = body.items[i]
 				var duration = this.moment.duration(video.contentDetails.duration).asSeconds()
 				duration = (duration == 0) ? -1 : duration
-				videoList.push({
-					id: video.id,
-					title: video.snippet.title,
-					channel: {
-						id: video.snippet.channelId,
-						name: video.snippet.channelTitle
-					},
-					thumbnail: video.snippet.thumbnails.medium.url,
-					duration: duration,
-					tags: video.snippet.tags,
-				})
+				if(!this.filterList[video.snippet.channelId]) {
+					videoList.push({
+						id: video.id,
+						title: video.snippet.title,
+						channel: {
+							id: video.snippet.channelId,
+							name: video.snippet.channelTitle
+						},
+						thumbnail: video.snippet.thumbnails.medium.url,
+						duration: duration,
+						tags: video.snippet.tags,
+					})
+				}
 			}
 			callback(videoList)
 		})
