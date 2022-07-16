@@ -319,7 +319,7 @@ setInterval(function() {
 		}
 		
 		room.time = room.time + parseFloat(room.speed)
-		if(room.time >= room.video.duration) {
+		if(room.time > room.video.duration) {
 			room.next()
 			lyrics.send(room)
 			io.in(room.id).emit("video", room)
