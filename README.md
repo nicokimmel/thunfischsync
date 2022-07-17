@@ -13,7 +13,7 @@ Es handelt sich um eine simple Watch2Gether Alternative, das bedeutet man kann s
  2. Node Dependencies mit `npm install` installieren
  3. Adresse in `src/public/js/connection.js` (Zeile 2) anpassen
  4. Grunt mithilfe von `npm run build` ausführen um einen `dist/` Ordner zu erhalten
- 5. In den Ordner `dist/` wechseln und eine Datei `.env` erstellen, die einen [YouTube API Key](https://console.developers.google.com/projectcreate) und optional eine Liste geblockter YouTube Kanäle (Channel ID mit Komma geteilt) enthält:
+ 5. In den Ordner `dist/` wechseln und eine Datei `.env` erstellen, die einen [YouTube API Key](https://console.developers.google.com/projectcreate) und optional eine Liste geblockter YouTube Kanäle (Channel ID mit Komma getrennt) enthält:
  ```Bash
  YOUTUBE_API_KEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
  CHANNEL_FILTER="XXXXXXXXXXXXXXXXXXXXXXXX,XXXXXXXXXXXXXXXXXXXXXXXX"
