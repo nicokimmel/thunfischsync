@@ -255,6 +255,16 @@ io.on("connection", function(client) {
 					io.in(room.id).emit("video", room)
 				})
 			},
+			tsstudy: () => {
+				youtube.getVideoById("RqzGzwTY-6w", (videoList) => {
+					room.time = 300
+					room.playing = true
+					room.video = videoList[0]
+					room.video.title = "Smoothed Brown Noise"
+					room.video.tags = []
+					io.in(room.id).emit("video", room)
+				})
+			}
 		}
 		
 		var command = commandList[commandMatch[0]]
