@@ -87,7 +87,7 @@ socket.on("speed", function(speed) {
 })
 
 socket.on("video", function(room) {
-	player.loadVideoById(room.video.id, 0, "default")
+	player.loadVideoById(room.video.id, room.time, "default")
 	window.setTimeout(() => {
 		room.playing ? player.playVideo() : player.pauseVideo()
 	}, 500)
